@@ -35,11 +35,9 @@ dependencies {
     implementation("io.github.resilience4j:resilience4j-spring-boot3")
 	implementation("io.github.resilience4j:resilience4j-all") // Optional, only required when you want to use the Decorators class
 	implementation("io.github.resilience4j:resilience4j-reactor")
-	implementation("io.micrometer:micrometer-registry-prometheus")
 	
 	implementation("io.vavr:vavr-jackson:0.10.3")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
 }
 
 tasks.named('test') {
