@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.1'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.github.mateusmcosta'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+
+dependencyManagement {
+	imports {
+		 mavenBom("io.github.resilience4j:resilience4j-bom:2.1.0")
+	}
+}
+
+repositories {
+	mavenCentral()
+
+	maven {
+        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
+    }
+}
+
+dependencies {
+	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-aop")
+
+    implementation("io.github.resilience4j:resilience4j-spring-boot3")
+	implementation("io.github.resilience4j:resilience4j-all") // Optional, only required when you want to use the Decorators class
+	implementation("io.github.resilience4j:resilience4j-reactor")
+	implementation("io.micrometer:micrometer-registry-prometheus")
+	
+	implementation("io.vavr:vavr-jackson:0.10.3")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.projectreactor:reactor-test")
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
